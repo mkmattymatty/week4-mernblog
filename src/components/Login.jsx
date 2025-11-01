@@ -9,12 +9,17 @@ export default function Login() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  // ✅ Base API URL (works locally and in Vercel)
+  const API_BASE_URL =
+    import.meta.env.VITE_API_BASE_URL ||
+    "https://week4-mernblog-server.vercel.app";
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
 
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", {
+      const res = await axios.post(`${API_BASE_URL}/api/auth/login`, {
         email,
         password,
       });
