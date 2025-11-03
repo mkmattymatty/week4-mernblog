@@ -3,8 +3,29 @@ Content:
 
 A full-stack blog app built using the MERN stack — MongoDB, Express.js, React.js, and Node.js — with authentication, image uploads, category filters, and comments.
 
+📝 Assignment Submission Summary – MERN Blog Project
+
+Project Title: MERN Blog Application
+Stack Used: MongoDB, Express.js, React.js, Node.js (MERN)
+Hosting:
+
+Frontend: Deployed on Vercel
+
+Backend/API: Deployed on Vercel
+
+Database: MongoDB Atlas (cloud-hosted, production-ready)
+
 
 ## 🚀 Features
+User registration and login (JWT authentication)
+
+Dynamic fetching and display of blog posts
+
+Category-based filtering
+
+Responsive design with modern UI
+
+Deployed frontend & backend connected to MongoDB Atlas
 - User authentication (register/login)
 - Create, read, update, delete posts
 - Categories and filtering
@@ -12,6 +33,12 @@ A full-stack blog app built using the MERN stack — MongoDB, Express.js, React.
 - Comment system
 - Responsive UI with Tailwind CSS
 - Dark/Light mode toggle
+ENV.
+VITE_API_URL=https://week4-mernblog-server.vercel.app/api
+MONGO_URI=<your MongoDB Atlas connection string>
+JWT_SECRET=<secret key>
+NODE_ENV=production
+
 
 
 ## 🏗️ Project Setup
