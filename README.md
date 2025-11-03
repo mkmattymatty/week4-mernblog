@@ -1,6 +1,7 @@
 Content:
 # 📰 MERN Blog Application
-
+Front end https://week4-mernblog.vercel.app/
+Backend:https://week4-mernblog-server.vercel.app/
 A full-stack blog app built using the MERN stack — MongoDB, Express.js, React.js, and Node.js — with authentication, image uploads, category filters, and comments.
 
 📝 Assignment Submission Summary – MERN Blog Project
