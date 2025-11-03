@@ -8,7 +8,7 @@ export default function PostList() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [loading, setLoading] = useState(true);
 
-  const BASE_URL = "http://localhost:5000";
+  const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
   const fetchCategories = async () => {
     try {
