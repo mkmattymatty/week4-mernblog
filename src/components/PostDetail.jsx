@@ -7,10 +7,13 @@ export default function PostDetail() {
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // ✅ Use your .env base URL
+  const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/posts/${id}`);
+        const res = await axios.get(`${BASE_URL}/posts/${id}`);
         setPost(res.data.data);
       } catch (err) {
         console.error("Error fetching post:", err);
@@ -39,7 +42,9 @@ export default function PostDetail() {
       {post.featuredImage && (
         <div className="relative w-full h-56 md:h-64 overflow-hidden rounded-lg shadow mb-6">
           <img
-            src={post.featuredImage}
+            src={post.featuredImage.startsWith("http")
+              ? post.featuredImage
+              : `${BASE_URL.replace("/api", "")}/${post.featuredImage}`}
             alt={post.title}
             className="w-full h-full object-cover"
           />
