@@ -8,14 +8,15 @@ export default function PostList() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [loading, setLoading] = useState(true);
 
-  const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+  // ✅ Remove extra /api duplication
+  const BASE_URL = import.meta.env.VITE_API_URL?.replace(/\/$/, "") || "http://localhost:5000/api";
 
   const fetchCategories = async () => {
     try {
-      const res = await axios.get(`${BASE_URL}/api/categories`);
+      const res = await axios.get(`${BASE_URL}/categories`);
       setCategories(res.data.data || []);
     } catch (err) {
-      console.error("Error fetching categories:", err);
+      console.error("❌ Error fetching categories:", err);
     }
   };
 
@@ -23,7 +24,7 @@ export default function PostList() {
     setLoading(true);
     try {
       const res = await axios.get(
-        `${BASE_URL}/api/posts${category ? "?category=" + category : ""}`
+        `${BASE_URL}/posts${category ? "?category=" + category : ""}`
       );
       const data = res.data.data || [];
 
@@ -36,7 +37,7 @@ export default function PostList() {
 
       setPosts(postsWithImages);
     } catch (err) {
-      console.error("Error fetching posts:", err);
+      console.error("❌ Error fetching posts:", err);
     } finally {
       setLoading(false);
     }
@@ -81,7 +82,7 @@ export default function PostList() {
         ))}
       </div>
 
-      {/* ✅ Posts Grid as Cards */}
+      {/* ✅ Posts Grid */}
       {loading ? (
         <p className="text-center text-gray-500">Loading posts...</p>
       ) : posts.length === 0 ? (
@@ -93,7 +94,7 @@ export default function PostList() {
               key={post._id}
               className="bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1 overflow-hidden flex flex-col border border-gray-200 dark:border-gray-700"
             >
-              {/* ✅ Card Header (Image + Category) */}
+              {/* Header */}
               <div className="flex justify-between items-start p-5">
                 <div>
                   <p className="text-sm text-gray-500 font-semibold mb-1">
@@ -115,7 +116,7 @@ export default function PostList() {
                 )}
               </div>
 
-              {/* ✅ Card Body */}
+              {/* Body */}
               <div className="px-5 pb-5 flex flex-col flex-grow">
                 <p className="text-gray-700 dark:text-gray-300 mb-4 flex-grow">
                   {post.excerpt || post.content.substring(0, 120) + "..."}
